@@ -1,0 +1,15 @@
+entity PropertyConsumptionKey {
+	propertyType String,
+    numberOfRooms Integer,
+    numberOfPeole Integer,
+    electricityAverage Integer,
+    getAverage Integer
+}
+entity PropertyConsumption {
+    electricityAverage Integer,
+    getAverage Integer
+}
+
+relationship OneToOne {
+	PropertyConsumption{id} to PropertyConsumptionKey
+}
