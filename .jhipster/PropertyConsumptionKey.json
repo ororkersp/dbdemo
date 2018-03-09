@@ -1,0 +1,33 @@
+{
+    "fluentMethods": true,
+    "relationships": [],
+    "fields": [
+        {
+            "fieldName": "propertyType",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "numberOfRooms",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "numberOfPeole",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "electricityAverage",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "getAverage",
+            "fieldType": "Integer"
+        }
+    ],
+    "changelogDate": "20180309233358",
+    "entityTableName": "property_consumption_key",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "microserviceName": "dbdemo"
+}
