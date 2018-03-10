@@ -18,26 +18,22 @@ public class PropertyConsumption implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @EmbeddedId
+    private PropertyConsumptionKey id;
 
     @Column(name = "electricity_average")
     private Integer electricityAverage;
 
-    @Column(name = "get_average")
-    private Integer getAverage;
+    @Column(name = "gas_average")
+    private Integer gasAverage;
 
-    @OneToOne
-    @JoinColumn(unique = true)
-    private PropertyConsumptionKey id;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
-    public Long getId() {
+    public PropertyConsumptionKey getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(PropertyConsumptionKey id) {
         this.id = id;
     }
 
@@ -54,59 +50,34 @@ public class PropertyConsumption implements Serializable {
         this.electricityAverage = electricityAverage;
     }
 
-    public Integer getGetAverage() {
-        return getAverage;
+    public Integer getGasAverage() {
+        return gasAverage;
     }
 
-    public PropertyConsumption getAverage(Integer getAverage) {
-        this.getAverage = getAverage;
+    public PropertyConsumption gasAverage(Integer gasAverage) {
+        this.gasAverage = gasAverage;
         return this;
     }
 
-    public void setGetAverage(Integer getAverage) {
-        this.getAverage = getAverage;
+    public void setGasAverage(Integer gasAverage) {
+        this.gasAverage = gasAverage;
     }
 
-    public PropertyConsumptionKey getId() {
-        return id;
-    }
-
-    public PropertyConsumption id(PropertyConsumptionKey propertyConsumptionKey) {
-        this.id = propertyConsumptionKey;
-        return this;
-    }
-
-    public void setId(PropertyConsumptionKey propertyConsumptionKey) {
-        this.id = propertyConsumptionKey;
-    }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        PropertyConsumption propertyConsumption = (PropertyConsumption) o;
-        if (propertyConsumption.getId() == null || getId() == null) {
-            return false;
-        }
-        return Objects.equals(getId(), propertyConsumption.getId());
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        PropertyConsumption that = (PropertyConsumption) o;
+        return Objects.equals(id, that.id) &&
+            Objects.equals(electricityAverage, that.electricityAverage) &&
+            Objects.equals(gasAverage, that.gasAverage);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(getId());
-    }
 
-    @Override
-    public String toString() {
-        return "PropertyConsumption{" +
-            "id=" + getId() +
-            ", electricityAverage=" + getElectricityAverage() +
-            ", getAverage=" + getGetAverage() +
-            "}";
+        return Objects.hash(id, electricityAverage, gasAverage);
     }
 }

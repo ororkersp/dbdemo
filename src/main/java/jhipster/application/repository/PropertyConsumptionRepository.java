@@ -1,6 +1,7 @@
 package jhipster.application.repository;
 
 import jhipster.application.domain.PropertyConsumption;
+import jhipster.application.domain.PropertyConsumptionKey;
 import org.springframework.stereotype.Repository;
 
 import org.springframework.data.jpa.repository.*;
@@ -11,6 +12,6 @@ import org.springframework.data.jpa.repository.*;
  */
 @SuppressWarnings("unused")
 @Repository
-public interface PropertyConsumptionRepository extends JpaRepository<PropertyConsumption, Long> {
+public interface PropertyConsumptionRepository extends JpaRepository<PropertyConsumption, PropertyConsumptionKey> {
 
 }
