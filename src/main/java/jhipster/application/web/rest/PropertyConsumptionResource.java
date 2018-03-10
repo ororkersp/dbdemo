@@ -5,14 +5,15 @@ import io.github.jhipster.web.util.ResponseUtil;
 import jhipster.application.domain.PropertyConsumption;
 import jhipster.application.domain.PropertyConsumptionKey;
 import jhipster.application.repository.PropertyConsumptionRepository;
+import jhipster.application.web.rest.errors.BadRequestAlertException;
+import jhipster.application.web.rest.util.HeaderUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.List;
 import java.util.Optional;
 
@@ -33,7 +34,25 @@ public class PropertyConsumptionResource {
         this.propertyConsumptionRepository = propertyConsumptionRepository;
     }
 
-
+    /**
+     * POST  /property-consumptions : Create a new propertyConsumption.
+     *
+     * @param propertyConsumption the propertyConsumption to create
+     * @return the ResponseEntity with status 201 (Created) and with body the new propertyConsumption, or with status 400 (Bad Request) if the propertyConsumption has already an ID
+     * @throws URISyntaxException if the Location URI syntax is incorrect
+     */
+    @PostMapping("/property-consumptions")
+    @Timed
+    public ResponseEntity<PropertyConsumption> createPropertyConsumption(@RequestBody PropertyConsumption propertyConsumption) throws URISyntaxException {
+        log.debug("REST request to save PropertyConsumption : {}", propertyConsumption);
+//        if (propertyConsumption.getId() != null) {
+//            throw new BadRequestAlertException("A new propertyConsumption cannot already have an ID", ENTITY_NAME, "idexists");
+//        }
+        PropertyConsumption result = propertyConsumptionRepository.save(propertyConsumption);
+        return ResponseEntity.created(new URI("/api/property-consumptions/" + result.getId()))
+            .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
+            .body(result);
+    }
 
     /**
      * GET  /property-consumptions : get all the propertyConsumptions.

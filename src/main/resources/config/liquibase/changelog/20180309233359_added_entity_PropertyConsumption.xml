@@ -44,5 +44,26 @@
         </createTable>
 
     </changeSet>
+    <changeSet id="20180309233359-2" author="jhipster">
+        <loadData
+            file="config/liquibase/changelog/20180309233359_loaded_data_PropertyConsumption.csv"
+            tableName = "property_consumption" >
+            <!--
+        <column header="zipcode" name="zipcode" type="string"/>
+        <column header="ZipCodeType" type="skip"/>
+        <column header="City" name="city" type="string"/>
+        <column header="State" name="state_code" type="string"/>
+        <column header="LocationType" type="skip"/>
+        <column header="Lat" type="skip"/>
+        <column header="Long" type="skip"/>
+        <column header="Location" type="skip"/>
+        <column header="Decommisioned" type="skip"/>
+        <column header="TaxReturnsFiled" type="skip"/>
+        <column header="EstimatedPopulation" type="skip"/>
+        <column header="TotalWages" type="skip"/>
+        -->
+    </loadData>
+
+</changeSet>
     <!-- jhipster-needle-liquibase-add-changeset - JHipster will add changesets here, do not remove-->
 </databaseChangeLog>
