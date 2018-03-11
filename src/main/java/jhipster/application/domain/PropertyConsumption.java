@@ -13,7 +13,7 @@ import java.util.Objects;
  */
 @Entity
 @Table(name = "property_consumption")
-@Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+@Cache(usage = CacheConcurrencyStrategy.READ_ONLY)
 public class PropertyConsumption implements Serializable {
 
     private static final long serialVersionUID = 1L;

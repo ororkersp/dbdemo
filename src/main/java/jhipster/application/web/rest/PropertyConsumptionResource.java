@@ -5,10 +5,7 @@ import io.github.jhipster.web.util.ResponseUtil;
 import jhipster.application.domain.PropertyConsumption;
 import jhipster.application.domain.PropertyConsumptionKey;
 import jhipster.application.repository.PropertyConsumptionRepository;
-import jhipster.application.web.rest.errors.BadRequestAlertException;
 import jhipster.application.web.rest.util.HeaderUtil;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,8 +20,6 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/api")
 public class PropertyConsumptionResource {
-
-    private final Logger log = LoggerFactory.getLogger(PropertyConsumptionResource.class);
 
     private static final String ENTITY_NAME = "propertyConsumption";
 
@@ -44,10 +39,6 @@ public class PropertyConsumptionResource {
     @PostMapping("/property-consumptions")
     @Timed
     public ResponseEntity<PropertyConsumption> createPropertyConsumption(@RequestBody PropertyConsumption propertyConsumption) throws URISyntaxException {
-        log.debug("REST request to save PropertyConsumption : {}", propertyConsumption);
-//        if (propertyConsumption.getId() != null) {
-//            throw new BadRequestAlertException("A new propertyConsumption cannot already have an ID", ENTITY_NAME, "idexists");
-//        }
         PropertyConsumption result = propertyConsumptionRepository.save(propertyConsumption);
         return ResponseEntity.created(new URI("/api/property-consumptions/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
@@ -62,7 +53,6 @@ public class PropertyConsumptionResource {
     @GetMapping("/property-consumptions")
     @Timed
     public List<PropertyConsumption> getAllPropertyConsumptions() {
-        log.debug("REST request to get all PropertyConsumptions");
         return propertyConsumptionRepository.findAll();
         }
 
@@ -78,7 +68,6 @@ public class PropertyConsumptionResource {
         @PathVariable String propertyType,
         @PathVariable Integer numberOfRooms,
         @PathVariable Integer numberOfPeople) {
-        log.debug("REST request to get PropertyConsumption : {}, {}, {}", propertyType, numberOfRooms, numberOfPeople);
         final PropertyConsumptionKey propertyConsumptionKey =
             new PropertyConsumptionKey()
                 .propertyType(propertyType)
