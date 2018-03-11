@@ -83,14 +83,17 @@ public class PropertyConsumptionResourceIntTest {
      */
     public static PropertyConsumption createEntity(EntityManager em) {
         final PropertyConsumptionKey propertyConsumptionKey =
-            new PropertyConsumptionKey()
+            PropertyConsumptionKey.builder()
                 .propertyType("FLAT")
                 .numberOfRooms(2)
-                .numberOfPeople(4);
+                .numberOfPeople(4)
+                .build();
 
-        PropertyConsumption propertyConsumption = new PropertyConsumption()
+        PropertyConsumption propertyConsumption =
+            PropertyConsumption.builder()
             .electricityAverage(DEFAULT_ELECTRICITY_AVERAGE)
-            .gasAverage(DEFAULT_GET_AVERAGE);
+            .gasAverage(DEFAULT_GET_AVERAGE)
+                .build();
         propertyConsumption.setId(propertyConsumptionKey);
 
         return propertyConsumption;

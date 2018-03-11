@@ -40,7 +40,12 @@ public class PropertyConsumptionResource {
     @Timed
     public ResponseEntity<PropertyConsumption> createPropertyConsumption(@RequestBody PropertyConsumption propertyConsumption) throws URISyntaxException {
         PropertyConsumption result = propertyConsumptionRepository.save(propertyConsumption);
-        return ResponseEntity.created(new URI("/api/property-consumptions/" + result.getId()))
+        PropertyConsumptionKey id = result.getId();
+        return ResponseEntity.created(new URI("/api/property-consumptions/"
+            + id.getPropertyType() +"/"
+            + id.getNumberOfPeople() +"/"
+            + id.getNumberOfRooms()
+        ))
             .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
             .body(result);
     }
@@ -69,10 +74,11 @@ public class PropertyConsumptionResource {
         @PathVariable Integer numberOfRooms,
         @PathVariable Integer numberOfPeople) {
         final PropertyConsumptionKey propertyConsumptionKey =
-            new PropertyConsumptionKey()
+            PropertyConsumptionKey.builder()
                 .propertyType(propertyType)
                 .numberOfRooms(numberOfRooms)
-                .numberOfPeople(numberOfPeople);
+                .numberOfPeople(numberOfPeople)
+                .build();
         PropertyConsumption propertyConsumption = propertyConsumptionRepository.findOne(propertyConsumptionKey);
         return ResponseUtil.wrapOrNotFound(Optional.ofNullable(propertyConsumption));
     }
