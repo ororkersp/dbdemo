@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <property name="now" value="now()" dbms="h2"/>
+
+    <property name="now" value="now()" dbms="mysql"/>
+    <property name="autoIncrement" value="true"/>
+
+    <property name="floatType" value="float4" dbms="postgresql, h2"/>
+    <property name="floatType" value="float" dbms="mysql, oracle, mssql"/>
+
+    <!--
+        Added the entity PropertyConsumption.
+    -->
+    <changeSet id="20180309233359-1" author="jhipster">
+        <createTable tableName="property_consumption">
+            <column name="property_type" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="number_of_rooms" type="integer">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="number_of_people" type="integer">
+                <constraints nullable="true" />
+            </column>
+            <column name="electricity_average" type="integer">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="gas_average" type="integer">
+                <constraints nullable="true" />
+            </column>
+            <column name="id_id" type="bigint">
+                <constraints unique="true" nullable="true" />
+            </column>
+            <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
+        </createTable>
+
+    </changeSet>
+    <changeSet id="20180309233359-2" author="jhipster">
+        <loadData
+            file="config/liquibase/changelog/20180309233359_loaded_data_PropertyConsumption.csv"
+            tableName = "property_consumption" >
+            <!--
+        <column header="zipcode" name="zipcode" type="string"/>
+        <column header="ZipCodeType" type="skip"/>
+        <column header="City" name="city" type="string"/>
+        <column header="State" name="state_code" type="string"/>
+        <column header="LocationType" type="skip"/>
+        <column header="Lat" type="skip"/>
+        <column header="Long" type="skip"/>
+        <column header="Location" type="skip"/>
+        <column header="Decommisioned" type="skip"/>
+        <column header="TaxReturnsFiled" type="skip"/>
+        <column header="EstimatedPopulation" type="skip"/>
+        <column header="TotalWages" type="skip"/>
+        -->
+    </loadData>
+
+</changeSet>
+    <!-- jhipster-needle-liquibase-add-changeset - JHipster will add changesets here, do not remove-->
+</databaseChangeLog>

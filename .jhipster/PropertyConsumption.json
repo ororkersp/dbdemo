@@ -1,0 +1,30 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "id",
+            "otherEntityName": "propertyConsumptionKey",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "propertyConsumption"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "electricityAverage",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "getAverage",
+            "fieldType": "Integer"
+        }
+    ],
+    "changelogDate": "20180309233359",
+    "entityTableName": "property_consumption",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "microserviceName": "dbdemo"
+}
